@@ -259,11 +259,15 @@ function problem10(nums: number[]): void {
 }
 
 /*
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer:O(n log n)
+Best Time:O(n log n)
+Worst Time:O(n log n)
+Space:O(1)
+Reason: Outer loop me iteration nums.length tak chlega , agar nums.length = n hai to outer loop ki time complexity O(n).
+Inner loop har iteration me problem ko half kr rha hai isliye ye log n ke according grow hota hai isliye inner loop ki time complexity O(log n) hogi.
+dono loop nested hai isliye total complexity O(n log n) hogi.
+Same input size n ke liye loops ka behaviour fixed hai, numns ke actual values loop ko change nhi krte, isliye best aur worst time O(n log n) hogi.
+Koi extra array, map, set ya input ke sath grow hone wala koi data structure nhi create ho rha aur sirf fixed variables i aur x use ho rha hai, isliye space complexity O(1) hogi.
 */
 
 
@@ -278,11 +282,14 @@ function problem11(nums: number[]): void {
 }
 
 /*
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer: O(1)
+Best Time: O(1)
+Worst Time: O(1)
+Space:O(1)
+Reason: Loop me limit fixed hai i < 10 isliye numns me elements kitne bhi ho loop exactly 10 bar chlega , isliye complexity hogi O(10)=O(1).
+halaki nums me 10 elements hone chahiye, agar 10 se kam elements hoge to loop to 10 bar hi chlega lekin jitne kam elements hoge utne undefined print hoga.
+Kyuki ye iteration maximum 10 bar hi chalega best aur worst dono time me isliye best aur worst time O(1) hi hoga.
+Yha koi array , set, map ya input ke sath koi data structure create nhi ho rha hai. sirf fixed variable i hi use ho rha hai isliye space complexity O(1) hogi.
 */
 
 
@@ -299,11 +306,24 @@ function problem12(nums: number[]): void {
 }
 
 /*
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer:O(n)
+Best Time:O(n)
+Worst Time:O(n)
+Space:O(1)
+Reason: Outer loop nums ke har element ke liye chalega.
+Agar nums.length = n hai to outer loop ki complexity O(n) hogi.
+
+Har outer iteration ke andar inner loop exactly 10 baar chalega.
+10 ek fixed constant hai, isliye inner loop ki complexity O(1) hai.
+
+Dono loops nested hain:
+
+O(n) × O(1)
+= O(n)
+
+Same input size n ke liye loops ka behavior fixed hai.
+Koi early return ya condition aisi nahi hai jo iterations ko kam kare,
+isliye Best Time aur Worst Time dono O(n) hain.
 */
 
 
@@ -324,11 +344,17 @@ function problem13(nums: number[]): number {
 }
 
 /*
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer:O(n)
+Best Time:O(n)
+Worst Time:O(n)
+Space:O(1)
+Reason:Yha sirf ek loop nums ke elements par chl rha hai.
+Agar nums.length=n hai to loop n time chlega.
+if (nums[i] > max) koi loop nhi hai ye har iteration me sirf ek comparison kr rha hai.
+har element ko current max ke sath ek bar compare kiya jaa rha hai isliye time coplexity O(n) hogi.
+Koi early return ya break nhi hai aur har case me pura array traverse krna pdega isliye best aur worst case me complexity O(n) hi hogi.
+Sirf fixed variables max aur i hi use ho rha hai.
+Yaha koi array, map, set ya input ke sath koi data structure nhi create ho rha hai isliye koi extra memory use nhi hogi isliye space complexity O(1) hogi.
 */
 
 
@@ -349,11 +375,15 @@ function problem14(nums: number[]): number[] {
 }
 
 /*
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer:O(n)
+Best Time:O(n)
+Worst Time:O(n)
+Space:O(n)
+Reason: Yha sirf ek loop nums ke elements par chal rha hai . loop ke andar ek condition if(num%2===0) check kr rhi hai ki num even hai ya odd .
+agar number even hai to element 'even' array me push ho rha hai aur ek new array 'even' return ho rha hai jisme sare even numbers hoge.
+nums me n elements bhi ho sakte hai isliye time complexity O(n) hogi. best aur worst case me iteration ko nums ke har elements par chalna hoga isliye best aur worst time O(n) hoga.
+Yha ek new array even input ke according grow ho rha hai aur har bar even number find hone par memory use ho rhi hai, agar even numbers k hai to space complexity O(k) hogi
+lekin worst case me sare elements even ho skte hai isliye space complexity O(n) hogi.
 */
 
 
@@ -383,9 +413,16 @@ users.length = n
 products.length = m
 orders.length = p
 
-Your Answer:
-Best Time:
-Worst Time:
-Space:
-Reason:
+Your Answer:O(n + mp)
+Best Time:O(n + mp)
+Worst Time:O(n + mp)
+Space:O(1)
+Reason: First loop users ke har element ke liye chl rha hai. users.length = n elements hai to time complexity O(n) hogi.
+Second loop nested loop hai jisme outer loop products ke har elements ke liye chl rha hai aur products.length=m hai to time complexity O(m) hogi,
+aur inner loop orders ke har elements ke liye chl rha hai aur kyuki orders.length=p hai isliye complexity O(p) hogi .
+second nested loop ki complexity O(mp) hogi aur pure function ki time complexity O(n+mp) hogi.
+
+Yha koi early return ya break nhi lga hua hai isliye best aur worst time O(n+mp) hogi.
+
+Yha koi array, set, map ya input ke sath koi extra memory grow nhi ho rhi hai aur sirf sirf current loop variables hi use ho rhe hai isliye space complexity hogi O(1).
 */
