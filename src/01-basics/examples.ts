@@ -311,6 +311,70 @@ console.log(arr);
 
 /*
 
+nums = [10, 20, 30, 40, 50, 60]
+
+Start:
+left = 0
+right = 5
+nums = [10, 20, 30, 40, 50, 60]
+
+Iteration 1:
+nums[left] = 10
+nums[right] = 60
+swap ke baad nums = [60, 20, 30, 40, 50, 10]
+left = 1
+right = 4
+
+Iteration 2:
+nums[left] =20
+nums[right] = 50
+swap ke baad nums = [60, 50, 30, 40, 20, 10]
+left = 2
+right = 3
+
+Iteration 3:
+nums[left] = 30
+nums[right] = 40
+swap ke baad nums = [60, 50, 40, 30, 20, 10]
+left = 3
+right = 2
+
+Final nums = [60, 50, 40, 30, 20, 10]
+
+Time Complexity = O(n)
+Space Complexity = O(1)
+
+ */
+
+// 10. Second Largest
+
+function findSecondLargest(nums: number[]): number | null {
+    let largest = -Infinity;
+    let secondLargest = -Infinity;
+
+    for (const num of nums) {
+
+        if (num > largest) {
+            secondLargest = largest;
+            largest = num;
+        }
+
+        else if (num > secondLargest && num < largest) {
+            secondLargest = num;
+        }
+    }
+
+    if (secondLargest === -Infinity) {
+        return null;
+    }
+
+    return secondLargest;
+}
+
+console.log(findSecondLargest([8, 3, 12, 6, 20, 5]));
+
+/*
+
 
 
  */
