@@ -375,6 +375,141 @@ console.log(findSecondLargest([8, 3, 12, 6, 20, 5]));
 
 /*
 
+nums = [10, 5, 8, 20, 15]
 
+Start:
+largest = -Infinity
+secondLargest = -Infinity
+
+num = 10 →
+largest = 10
+secondLargest = -infinity
+
+num = 5 →
+largest = 10
+secondLargest = 5
+
+num = 8 →
+largest = 10
+secondLargest = 8
+
+num = 20 →
+largest = 20
+secondLargest = 10
+
+num = 15 →
+largest = 20
+secondLargest = 15
+
+Final largest = 20
+Final secondLargest = 15
+
+Time Complexity = O(n)
+Space Complexity = O(1)
 
  */
+
+// 11. In-Place Modification
+
+function doubleInPlace(nums: number[]): void {
+    for (let i = 0; i < nums.length; i++) {
+        nums[i] = nums[i] * 2;
+    }
+}
+
+const values = [2, 5, 8, 10];
+
+doubleInPlace(values);
+
+console.log(values);
+
+/*
+
+Start:
+values = [2, 5, 8, 10]
+
+i = 0
+2 * 2 = 4
+values = [4, 5, 8, 10]
+
+i = 1
+5 * 2 = 10
+values = [4, 10, 8, 10]
+
+i = 2
+8 * 2 = 16
+values = [4, 10, 16, 10]
+
+i = 3
+10 * 2 = 20
+values = [4, 10, 16, 20]
+
+Final:
+[4, 10, 16, 20]
+
+Time Complexity = O(n)
+Space Complexity = O(1)
+
+Aur:
+Ye "in-place" kyu hai?
+Ans: Kyuki isme array me elements ke place par hi values ko double krke replace ho rhe hai. new array ki jarurt nhi pdi aur same array ko modify kiya
+
+ */
+
+
+// 12. Edge Case Handling
+
+function findMaxSafe(nums: number[]): number | null {
+    if (nums.length === 0) {
+        return null;
+    }
+
+    let max = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] > max) {
+            max = nums[i];
+        }
+    }
+
+    return max;
+}
+
+console.log(findMaxSafe([4, 7, 2, 10])); // 10
+console.log(findMaxSafe([]));            // null
+console.log(findMaxSafe([-8, -2, -10])); // -2
+console.log(findMaxSafe([5]));           // 5
+
+
+
+// 13. Mixed State Tracking
+
+function analyzeNumbers(nums: number[]) {
+    if (nums.length === 0) {
+        return null;
+    }
+
+    let sum = 0;
+    let positiveCount = 0;
+    let max = nums[0];
+
+    for (const num of nums) {
+        sum += num;
+
+        if (num > 0) {
+            positiveCount++;
+        }
+
+        if (num > max) {
+            max = num;
+        }
+    }
+
+    return {
+        sum,
+        positiveCount,
+        max
+    };
+}
+
+console.log(analyzeNumbers([4, -2, 7, 10, -5]));
