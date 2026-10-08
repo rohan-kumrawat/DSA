@@ -559,10 +559,12 @@ Index Tracking + Early Return
 */
 
 function findTargetIndex(nums: number[], target: number): number {
+    let index = 0;
     for (const num of nums ) {
         if (num === target) {
-            return 1;
+            return index;
         }
+        index++;
     }
     return -1;
 }
@@ -586,8 +588,15 @@ Minimum + Index Tracking
 */
 
 function findMinIndex(nums: number[]): number {
-    // TODO
-    return 0;
+    let min = nums[0];
+    let index = 0;
+    for (let i=1; i < nums.length; i++) {
+        if (min > nums[i]){
+            min = nums[i];
+            index = i;
+        }
+    }
+    return index;
 }
 
 
@@ -608,7 +617,14 @@ Swapping + Edge Cases
 */
 
 function swapFirstLast(nums: number[]): void {
-    // TODO
+    if (nums.length <= 1) {
+        return;
+    }
+    let temp = 0;
+    temp = nums[0] ;
+    nums[0] = nums[nums.length - 1];
+    nums[nums.length - 1] = temp;
+    console.log(nums);
 }
 
 
@@ -629,7 +645,14 @@ In-Place Modification
 */
 
 function negateInPlace(nums: number[]): void {
-    // TODO
+    let temp = 0;
+    for (let i=0; i<nums.length; i++) {
+
+        temp = 0 - nums[i];
+        nums[i] = temp;
+
+    }
+
 }
 
 
@@ -648,7 +671,18 @@ Two indexes + Swapping + In-place
 */
 
 function reverseStrings(words: string[]): void {
-    // TODO
+    let left = 0;
+    let right = words.length - 1;
+
+    while(left < right) {
+        const temp = words[left];
+        words[left] = words[right];
+        words[right] = temp;
+
+        left++;
+        right--;
+    }
+    console.log(words);
 }
 
 
@@ -672,11 +706,19 @@ Concept:
 Value + Index Tracking + Edge Case
 */
 
-function findLargestWithIndex(
-    nums: number[]
-): { value: number; index: number } | null {
-    // TODO
-    return null;
+function findLargestWithIndex(nums: number[]): { value: number; index: number } | null {
+    if(nums.length === 0){
+        return null;
+    }
+    let maxIndex = 0;
+    let max = nums[0];
+    for (let i=1; i < nums.length; i++){
+        if (nums[i] > max) {
+            max = nums[i];
+            maxIndex = i;
+        }
+    }
+    return ({value : max, index : maxIndex});
 }
 
 
@@ -704,7 +746,26 @@ Multiple State Tracking
 */
 
 function findSecondSmallest(nums: number[]): number | null {
-    // TODO
+
+    let smallest = Infinity;
+    let secondSmallest = Infinity;
+
+    for (const num of nums) {
+
+        if (num < smallest) {
+            secondSmallest = smallest;
+            smallest = num;
+        }
+
+        else if (num > smallest && num < secondSmallest)  {
+            secondSmallest = num;
+        }
+        if (secondSmallest === null) {
+            return null;
+        }
+    }
+
+
     return null;
 }
 
@@ -729,8 +790,15 @@ Counter + Accumulator in one traversal
 function analyzePositive(
     nums: number[]
 ): { count: number; sum: number } {
-    // TODO
-    return { count: 0, sum: 0 };
+    let sum = 0;
+    let count = 0;
+    for (const num of nums) {
+        if (num > 0) {
+            count++;
+            sum = sum + num;
+        }
+    }
+    return { count: count, sum: sum };
 }
 
 
@@ -773,8 +841,38 @@ function analyzeNumbersPractice(nums: number[]): {
     max: number;
     min: number;
 } | null {
-    // TODO
-    return null;
+    if (nums.length === 0) {
+        return null;
+    }
+    let sum = 0;
+    let positiveCount = 0;
+    let negativeCount = 0;
+    let min= nums[0];
+    let max= nums[0];
+
+    for (let i = 0; i < nums.length; i++){
+        sum += nums[i];
+
+        if (min > nums[i]){
+            min = nums[i];
+        }
+        if (max < nums[i]){
+            max = nums[i];
+        }
+        if (nums[i] < 0){
+          negativeCount++;
+        }
+        if (nums[i] > 0){
+            positiveCount++;
+        }
+    }
+    return ({
+        sum: sum,
+        positiveCount: positiveCount,
+        negativeCount: negativeCount,
+        max: max,
+        min: min
+    });
 }
 
 
@@ -794,8 +892,12 @@ Boolean Result + Early Return
 */
 
 function isAllPositive(nums: number[]): boolean {
-    // TODO
-    return false;
+    for (let i= 0; i < nums.length; i++){
+        if (nums[i] <= 0 ) {
+            return false;
+        }
+    }
+    return true;
 }
 
 
@@ -817,8 +919,21 @@ Multiple State Tracking
 */
 
 function countMaxOccurrences(nums: number[]): number {
-    // TODO
-    return 0;
+
+    let max = nums[0];
+    let count = 1;
+
+    for (let i=1; i < nums.length; i++){
+        if (nums[i] > max) {
+            max = nums[i];
+            count = 1;
+        }
+        else if (nums[i] === max){
+            count++;
+
+        }
+    }
+    return count;
 }
 
 
@@ -843,8 +958,20 @@ Max + Min in one traversal
 */
 
 function maxMinDifference(nums: number[]): number | null {
-    // TODO
-    return null;
+    let min = nums[0];
+    let max = nums[0];
+    if (nums.length === 0){
+        return null;
+    }
+    for (let num of nums) {
+        if (num < min){
+            min = num;
+        }
+        if (num > max){
+            max = num;
+        }
+    }
+    return (max-min);
 }
 
 
