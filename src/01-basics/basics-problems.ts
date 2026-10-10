@@ -569,6 +569,30 @@ function findTargetIndex(nums: number[], target: number): number {
     return -1;
 }
 
+/*
+Dry run:
+
+nums= [5,8,12,8]
+target= 8
+
+start-
+index = 0;
+num = 5;
+(num === 8) : false
+index++
+
+index = 1
+num = 8
+(num === 8) : true
+output = 1
+
+Time Complexity = O(n),
+Best case time complexity = O(1)
+
+Space Complexity = O(1)
+
+ */
+
 
 // ==================================================
 // Problem 8: Find Minimum Index
@@ -591,7 +615,7 @@ function findMinIndex(nums: number[]): number {
     let min = nums[0];
     let index = 0;
     for (let i=1; i < nums.length; i++) {
-        if (min > nums[i]){
+        if (nums[i] < min){
             min = nums[i];
             index = i;
         }
@@ -599,7 +623,40 @@ function findMinIndex(nums: number[]): number {
     return index;
 }
 
+/*
+Dry Run :
 
+start-
+
+nums = [8, 3,12,-2,6]
+let min = 8
+let index = 0
+
+i=1
+(3 < 8) : true
+min = 3
+index = 1
+
+i=2
+(12 < 3) : false
+min =3
+
+i=3
+(-2 < 3) : true
+min = -2
+index = 3
+
+i=4
+(6 < -2) : false
+min = -2
+
+output : index = 3
+
+Time Complexity = O(n) Kyuki loop har element ko check krega isliye element par chlega.
+
+Space Complexity = O(1) Kyuki koi extra memory create nhi ho rhi.
+
+ */
 // ==================================================
 // Problem 9: Swap First and Last
 // ==================================================
@@ -620,13 +677,30 @@ function swapFirstLast(nums: number[]): void {
     if (nums.length <= 1) {
         return;
     }
-    let temp = 0;
-    temp = nums[0] ;
+    let temp = nums[0] ;
     nums[0] = nums[nums.length - 1];
     nums[nums.length - 1] = temp;
     console.log(nums);
 }
 
+/*
+Dry Run :
+
+start-
+
+nums= [10,20,30,40]
+
+temp = nums[0] = 10;
+nums[0] = nums[3] = 40;
+nums[3] = temp = 10
+
+output = [40,20,30,10]
+
+Time Complexity = O(1) Kyuki array kitni bhi badi ho frst aur last ko swap krne ke liye same logic lgega.
+Space Complexity = O(1) Kyuki koi extra memory grow nhi kr rhi.
+
+
+ */
 
 // ==================================================
 // Problem 10: Negate Array In-Place
@@ -645,17 +719,18 @@ In-Place Modification
 */
 
 function negateInPlace(nums: number[]): void {
-    let temp = 0;
+
     for (let i=0; i<nums.length; i++) {
 
-        temp = 0 - nums[i];
-        nums[i] = temp;
+        nums[i] = -nums[i];
 
     }
 
 }
 
-
+/*
+Time and Space Complexity O(n) aur O(1) hogi.
+ */
 // ==================================================
 // Problem 11: Reverse String Array In-Place
 // ==================================================
@@ -685,6 +760,33 @@ function reverseStrings(words: string[]): void {
     console.log(words);
 }
 
+/*
+Dry Run:
+
+start-
+words = ["A", "B", "C", "D"]
+
+left = 0
+right = 3
+(left < right) : true
+temp = words[0] = "A";
+words[0] = words[3] = "D";
+words[3] = temp = "A"
+left++ : left = 1
+right-- : right = 2
+
+(left < right) : true
+temp = words[1] = "B";
+words[1] = words[2] = "C";
+words[2] = temp = "B"
+left++ : left = 2
+right-- : right = 1
+
+(left < right) : false
+
+output = ["D", "C", "B", "A"]
+
+ */
 
 // ==================================================
 // Problem 12: Find Largest With Index
@@ -720,6 +822,13 @@ function findLargestWithIndex(nums: number[]): { value: number; index: number } 
     }
     return ({value : max, index : maxIndex});
 }
+
+/*
+
+
+Time Complexity = O(n)
+Space Complexity = O(1)
+ */
 
 
 // ==================================================
@@ -769,6 +878,46 @@ function findSecondSmallest(nums: number[]): number | null {
     return null;
 }
 
+/*
+
+Dry Run :
+
+nums = [8, 3, 5, 3, 1]
+let smallest = Infinity;
+let secondSmallest = Infinity;
+
+Start-
+
+num = 8
+(8 < Infinity) : true
+secondSmallest = smallest = Infinity
+smallest = 8
+
+num = 3
+(3 < 8)
+secondSmallest = smallest = 8
+smallest = 3
+
+num = 5
+(5 < 3) : false
+(5 > 3 && 5 < 8) : true
+secondSmallest = 5
+
+num = 3
+(3 < 3) : false
+(3 > 3 && 3 < 5) : false
+
+num = 1
+(1 < 3) : true
+secondSmallest = smallest = 3
+smallest = 1
+
+output : secondSmallest = 3
+
+Time Complexity = O(n)
+Space Complexity = O(1)
+
+ */
 
 // ==================================================
 // Problem 14: Count and Sum Positives
@@ -801,6 +950,11 @@ function analyzePositive(
     return { count: count, sum: sum };
 }
 
+/*
+
+
+
+ */
 
 // ==================================================
 // Problem 15: Analyze Numbers
